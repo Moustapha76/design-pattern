@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte à rebours</title>
+    <style>
+        body{height: 100vh;display: flex;justify-content: center;align-items: center;width: 100%;font-family: 'Courier New', Courier, monospace;}
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            height: 70px;
+        }
+        /* .container b{font-size: 2em;} */
+        .container .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .container .item span:nth-child(1) {
+            box-shadow: 10px 10px 40px #0000000e;
+            padding: 20px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            font-family:Arial, Helvetica, sans-serif;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="time">
+            <input type="number" name="chrono" id="chrono">
+            <input type="submit" value="Démarrer" id="ok">
+        </div>
+        <div class="item">
+            <span class="minute">00</span>
+            <span class="txt">Minute</span>
+        </div>
+        <b>:</b>
+        <div class="item">
+            <span class="second">00</span>
+            <span class="txt">Seconde</span>
+        </div>
+    </div>
+    <script>
+        function addZero(num){
+            if(num<10) return '0'+ num 
+            else{return num}
+        }
+        let chrono = document.querySelector('#chrono');
+        let ok = document.querySelector('#ok');
+        ok.addEventListener('click',function(){
+            console.log(chrono.value);
+            clearChronometer();
+            chronometer(chrono.value)
+        })
+        function clearChronometer(){
+            return chronometer(0, 0);
+        }
+        function chronometer(m, s=10){
+            const allSpans = document.querySelectorAll('span');const second = s;let seconds = second;let deadline = m;let cpt = 0;
+            // document.querySelector('.minute').innerHTML = n
+            // document.querySelector('.second').innerHTML = second
+            setInterval(() => {
+            allSpans.forEach(element => {
+                let theClass = element.className
+                switch(theClass) {
+                    case 'minute':
+                        element.innerHTML = addZero(deadline);
+                        break;
+                    case 'second':
+                        element.innerHTML = addZero(seconds);
+                        break;
+                    default:
+                        break
+                    }
+            }); 
+                
+                if(seconds == 0 && deadline >= 0 && cpt == 0){
+                    seconds = second+1; 
+                    deadline--;
+                } 
+                if(deadline < 0){
+                    cpt = 1;
+                    seconds = 0;
+                    deadline = 0;
+                }
+                if(deadline >= 0 && cpt == 0) seconds--
+        }, 1000);  
+        return false;
+        }
+    </script>
+</body>
+</html>

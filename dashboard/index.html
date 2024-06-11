@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriel</title>
+
+    <!-- tableau des leads -->
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Import materialize.css-->
+    <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/Dogfalo/materialize/fc44c862/dist/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="./public/css/materialize.min.css">
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script> -->
+    <script src="./public/js/jquery-2.2.1.min.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/Dogfalo/materialize/fc44c862/dist/js/materialize.min.js"></script> -->
+    <script src="./public/js/materialize.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.rawgit.com/pinzon1992/materialize_table_pagination/f9a8478f/js/pagination.js"></script> -->
+    <script src="./public/js/pagination.js"></script>
+    <!-- tableau des leads -->
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+        <div class="main-container">
+            <header>
+                <nav>
+                    <a class="navbar-brand" href="#"><img width="100px" src="./assets/logo.webp" class="logo" alt="Logo du site"></a>
+                </nav>
+                <form class="search-form">
+                    <input type="text" class="form-control" placeholder="Entrez un mot clés">
+                    <button type="submit" class="btn btn-default">Rechercher</button>
+                </form>
+                <div class="profile">
+                    <div class="img-profile">
+                    <img src="./assets/profile.JPG" alt="Profile">
+                    </div>
+                    <div class="infos">
+                    <span class="name">Mouhamadou Moustapha Diouf</span>
+                    <span class="online">En ligne</span>
+                    </div>
+                </div>
+            </header>
+            <aside class="filter">
+            <div class="item">
+                <strong>Outils</strong>
+                <li role="separator" class="divider"></li>
+                <ul>
+                    <div class="checkbox">
+                        <label class="filterChecked"><input type="radio" name='check' rel="item-1" onchange="change()" checked/>Leads</label>
+                      </div>
+                      <div class="checkbox">
+                        <label class="filterChecked"><input type="radio" name='check' rel="item-2" onchange="change()" checked/>Statistiques</label>
+                      </div>
+                      <div class="checkbox">
+                        <label class="filterChecked"><input type="radio" name='check' rel="item-3" onchange="change()" checked/>Paramètres</label>
+                      </div>
+                </ul>
+                <strong>Pages</strong>
+                <li role="separator" class="divider"></li>
+                <ul>
+                  <div class="checkbox">
+                    <label class="filterChecked"><input type="radio" name='check' rel="item-4" onchange="change()" checked/>Accueil</label>
+                  </div>
+                  <div class="checkbox">
+                    <label class="filterChecked"><input type="radio" name='check' rel="item-5" onchange="change()" checked/>Qui sommes-nous ?</label>
+                  </div>
+                  <div class="checkbox">
+                    <label class="filterChecked"><input type="radio" name='check' rel="item-6" onchange="change()" checked/>Services</label>
+                  </div>
+                  <div class="checkbox">
+                    <label class="filterChecked"><input type="radio" name='check' rel="item-7" onchange="change()" checked/>Galerie</label>
+                  </div>
+                  <div class="checkbox">
+                    <label class="filterChecked"><input type="radio" name='check' rel="item-8" onchange="change()" checked/>Actualités</label>
+                  </div>
+                  <div class="checkbox">
+                    <label class="filterChecked"><input type="radio" name='check' rel="item-9" onchange="change()" checked/>Contact</label>
+                  </div>
+                </ul>
+                <strong>FAQ</strong>
+                <li role="separator" class="divider"></li>
+                <ul>
+                    <div class="checkbox">
+                        <label class="filterChecked"><input type="radio" name='check' rel="item-10" onchange="change()" checked/>FAQ</label>
+                      </div>
+                </ul>
+            </div>
+
+            </aside>
+            <main>
+                <div class="content">
+                    <div class="result">
+                        <div class="bloc-item item-1" id="leads">
+                            <div class="showmsg">
+                                <h2>Bienvenu dans votre gestionnaire de leads</h2>
+                                <p>Vous pouvez gérer tout vos leads et contacts dans cet endroit.</p>
+                                <p>Pour toute question ou demande, n'hésitez pas à nous contacter.</p>
+                                <a href="#" class="btn">Service client</a>
+                            </div>
+                            <div class="row-lead">
+                                <!-- <input type="text" id="search" placeholder="Cliquez pour rechercher..." /> -->
+                                <table cellpadding="1" cellspacing="1" class="table table-hover" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Téléphone</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Prospect 1</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="opened">Lu <i class="fa-solid fa-check"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 2</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 3</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 4</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 5</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 6</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 7</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 8</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 9</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 10</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 11</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 12</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 13</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 14</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 15</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 16</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 17</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 18</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 19</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Prospect 20</td>
+                                            <td>06 12 63 26 73</td>
+                                            <td>prospect@gmail.com</td>
+                                            <td class="closed">Non lu <i class="fa-solid fa-envelope"></i></td>
+                                            <td class="details">
+                                                <a href="#" class="seemore"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="#" class="delete"><i class="fa-solid fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-md-12 center text-center">
+                                    <span class="left" id="total_reg"></span>
+                                    <ul class="pagination pager" id="myPager"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bloc-item item-2"></div>
+                        <div class="bloc-item item-3"></div>
+                        <div class="bloc-item item-4"></div>
+                        <div class="bloc-item item-5"></div>
+                        <div class="bloc-item item-6"></div>
+                        <div class="bloc-item item-7"></div>
+                        <div class="bloc-item item-8"></div>
+                        <div class="bloc-item item-9"></div>
+                        <div class="bloc-item item-10">
+                            <h1>Questions fréquemment posées</h1>
+                            <div class="text-content">
+                                <div class="container">
+                                    <div class="accordion">
+                                        <div class="accordion-left">
+                                            <div class="accordion-item">
+                                                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title"></span><span class="icon" aria-hidden="true"></span></button>
+                                                <div class="accordion-content">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <button id="accordion-button-2" aria-expanded="false"><span class="accordion-title"></span><span class="icon" aria-hidden="true"></span></button>
+                                                <div class="accordion-content">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <button id="accordion-button-3" aria-expanded="false"><span class="accordion-title"></span><span class="icon" aria-hidden="true"></span></button>
+                                                <div class="accordion-content">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            <div class="accordion-item">
+                                                <button id="accordion-button-4" aria-expanded="false"><span class="accordion-title"></span><span class="icon" aria-hidden="true"></span></button>
+                                                <div class="accordion-content">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <p>Copyright - 2024</p>
+                <p><a href="#"><img src="./assets/logo.webp" alt="Logo du site" class="logo"></a></p>
+                <p>Tous droits réservés</p>
+            </footer>
+        </div>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+        <!-- <script src="./public/js/jquery.min.js"></script> -->
+        <script src="./public/js/script.js"></script>
+        <script>
+            // tableau des leads
+            $(document).ready(function(){
+            $('#myTable').pageMe({
+                pagerSelector:'#myPager',
+                activeColor: 'blue',
+                prevText:'Anterior',
+                nextText:'Siguiente',
+                showPrevNext:true,
+                hidePageNumbers:false,
+                perPage:5
+            });
+            });
+        </script>
+    </body>
+</html>
