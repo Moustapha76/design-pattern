@@ -33,7 +33,7 @@ $.fn.pageMe = function(opts){
     pager.data("curr",0);
 
     if (settings.showPrevNext){
-        $('<li><a href="#" class="prev_link" title="'+settings.prevText+'"><i class="material-icons">chevron_left</i></a></li>').appendTo(pager);
+        $('<li><a href="#" class="prev_link" title="'+settings.prevText+'"><i class="fa-solid fa-chevron-left"></i></a></li>').appendTo(pager);
     }
 
     var curr = 0;
@@ -43,7 +43,7 @@ $.fn.pageMe = function(opts){
     }
 
     if (settings.showPrevNext){
-        $('<li><a href="#" class="next_link"  title="'+settings.nextText+'"><i class="material-icons">chevron_right</i></a></li>').appendTo(pager);
+        $('<li><a href="#" class="next_link"  title="'+settings.nextText+'"><i class="fa-solid fa-chevron-right"></i></a></li>').appendTo(pager);
     }
 
     pager.find('.page_link:first').addClass('active');
