@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploader d'images avec FilePond</title>
+    <!-- Inclusion du CSS de FilePond -->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .filepond--root {
+            margin-bottom: 20px;
+        }
+        #preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .image-preview {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f3f3;
+        }
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Uploader d'images</h2>
+        <!-- Zone de téléchargement de FilePond -->
+        <input type="file" class="filepond" name="filepond" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="5">
+        <!-- Zone de prévisualisation des images -->
+        <div id="preview-container"></div>
+        <!-- Bouton de validation -->
+        <button onclick="submitImages()">Valider les images</button>
+    </div>
+
+    <!-- Inclusion du JavaScript de FilePond -->
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script>
+        // Activer FilePond sur les input
+        const pond = FilePond.create(document.querySelector('input[type="file"]'), {
+            acceptedFileTypes: ['image/*'],
+            fileValidateTypeLabelExpectedTypesMap: {
+                'image/*': 'l’image'
+            },
+            labelIdle: 'Glissez & déposez vos images ou <span class="filepond--label-action"> Parcourez </span>',
+        });
+
+        // Écouteur d'événement pour la prévisualisation des images
+        pond.on('addfile', (error, file) => {
+            if (error) {
+                console.log('Oh non', error);
+                return;
+            }
+
+            // Créer un conteneur de prévisualisation
+            const previewContainer = document.getElementById('preview-container');
+            const imgElement = document.createElement('img');
+            const previewBox = document.createElement('div');
+            previewBox.classList.add('image-preview');
+
+            // Ajouter l'image prévisualisée
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imgElement.src = e.target.result;
+            };
+            reader.readAsDataURL(file.file);
+
+            previewBox.appendChild(imgElement);
+            previewContainer.appendChild(previewBox);
+        });
+
+        // Fonction de soumission des images
+        function submitImages() {
+            const files = pond.getFiles();
+            if (files.length === 0) {
+                alert('Veuillez sélectionner des images avant de les valider.');
+                return;
+            }
+
+            // Ici, vous pouvez gérer les fichiers comme vous le souhaitez.
+            alert(`Vous avez validé ${files.length} image(s).`);
+        }
+    </script>
+</body>
+</html>
